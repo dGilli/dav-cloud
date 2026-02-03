@@ -1,24 +1,23 @@
 <?php
 
-use
-    Sabre\DAV;
+use Sabre\DAV;
 
 // The autoloader
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 // Now we're creating a whole bunch of objects
-$rootDirectory = new DAV\FS\Directory('public');
+$rootDirectory = new DAV\FS\Directory(__DIR__ . '/../public');
 
 // The server object is responsible for making sense out of the WebDAV protocol
 $server = new DAV\Server($rootDirectory);
 
 // If your server is not on your webroot, make sure the following line has the
 // correct information
-$server->setBaseUri('/server.php');
+$server->setBaseUri('/');
 
 // The lock manager is reponsible for making sure users don't overwrite
 // each others changes.
-$lockBackend = new DAV\Locks\Backend\File('data/locks');
+$lockBackend = new DAV\Locks\Backend\File(__DIR__ . '/../data/locks');
 $lockPlugin = new DAV\Locks\Plugin($lockBackend);
 $server->addPlugin($lockPlugin);
 

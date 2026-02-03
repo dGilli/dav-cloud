@@ -3,9 +3,13 @@ COPY composer.* .
 RUN composer install
 
 FROM php:8.0.30-apache
-WORKDIR /var/www/html
+WORKDIR /var/www
 COPY --from=vendor /app/vendor vendor
-COPY server.php .
-RUN mkdir data public && \
-    chmod a+rwx data public
+COPY src/ src/
+COPY public/ public/
+RUN mkdir data && \
+    chmod a+rwx data public && \
+    sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/public|' /etc/apache2/sites-available/000-default.conf && \
+    sed -i 's|AllowOverride None|AllowOverride All|' /etc/apache2/apache2.conf && \
+    a2enmod rewrite
 

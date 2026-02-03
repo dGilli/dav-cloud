@@ -21,7 +21,7 @@ $lockBackend = new DAV\Locks\Backend\File(__DIR__ . '/../data/locks');
 $lockPlugin = new DAV\Locks\Plugin($lockBackend);
 $server->addPlugin($lockPlugin);
 
-$authBackend = new DAV\Auth\Backend\File(__DIR__ . '/../auth/htdigest');
+$authBackend = new DAV\Auth\Backend\File(__DIR__ . '/../htdigest');
 $authBackend->setRealm('SabreDAV');
 $authPlugin = new DAV\Auth\Plugin($authBackend);
 $server->addPlugin($authPlugin);

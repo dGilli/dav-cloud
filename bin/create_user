@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-passwordfile=/var/www/auth/htdigest
+passwordfile=/var/www/htdigest
 realm=SabreDAV
 username=$1
 

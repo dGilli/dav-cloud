@@ -11,3 +11,8 @@ Build and run:
 docker run --rm -dp 8080:80 $(dk build -q .)
 ```
 
+To add a new user, SSH into the container and run:
+```shell
+create_user <username>
+```
+

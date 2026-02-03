@@ -21,6 +21,11 @@ $lockBackend = new DAV\Locks\Backend\File(__DIR__ . '/../data/locks');
 $lockPlugin = new DAV\Locks\Plugin($lockBackend);
 $server->addPlugin($lockPlugin);
 
+$authBackend = new DAV\Auth\Backend\File(__DIR__ . '/../auth/htdigest');
+$authBackend->setRealm('SabreDAV');
+$authPlugin = new DAV\Auth\Plugin($authBackend);
+$server->addPlugin($authPlugin);
+
 // This ensures that we get a pretty index in the browser, but it is
 // optional.
 $server->addPlugin(new DAV\Browser\Plugin());

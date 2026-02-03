@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+passwordfile=/var/www/auth/htdigest
+realm=SabreDAV
+username=$1
+
+if [ -z "$username" ]; then
+    echo "Usage: $0 <username>"
+    exit 1
+fi
+
+if [ ! -f "$passwordfile" ]; then
+    echo "Info: creating new passwordfile $passwordfile"
+    touch $passwordfile
+fi
+
+htdigest "$passwordfile" "$realm" "$username"
+echo "Success: added user $username:$realm to $passwordfile"
+

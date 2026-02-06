@@ -8,7 +8,8 @@ COPY --from=vendor /app/vendor vendor
 COPY src/ src/
 COPY web/ html/
 COPY bin/create_user /usr/local/bin/create_user
-RUN mkdir data public && \
-    chmod a+rwx data public && \
+RUN mkdir data data/public && \
+    chown -R www-data:www-data data && \
+    chmod a+rwx data/public && \
     a2enmod rewrite
 

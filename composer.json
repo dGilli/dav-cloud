@@ -1,5 +1,6 @@
 {
     "require": {
-        "sabre/dav": "4.6.0"
+        "sabre/dav": "4.6.0",
+        "monolog/monolog": "2.11.0"
     }
 }

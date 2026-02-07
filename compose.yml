@@ -1,0 +1,16 @@
+services:
+  server:
+    build: .
+
+  db:
+    image: postgres:18.1
+    environment:
+      POSTGRES_DB: sabredav
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql
+
+volumes:
+  db-data:
+

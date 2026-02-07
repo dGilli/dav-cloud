@@ -5,7 +5,7 @@ RUN composer install
 FROM php:8.0.30-apache
 WORKDIR /var/www
 COPY --from=vendor /app/vendor vendor
-COPY src/ src/
+COPY src/ .
 COPY web/ html/
 COPY bin/create_user /usr/local/bin/create_user
 RUN mkdir data data/public && \

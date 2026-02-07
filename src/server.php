@@ -3,13 +3,13 @@
 use Sabre\DAV;
 
 // The autoloader
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 $logger = new \Monolog\Logger('SabreDav');
-$logger->pushHandler(new \Monolog\Handler\RotatingFileHandler(__DIR__.'/../data/logs/sabredav.log', 3, \Monolog\Logger::DEBUG, true, 0600));
+$logger->pushHandler(new \Monolog\Handler\RotatingFileHandler(__DIR__.'/data/logs/sabredav.log', 3, \Monolog\Logger::DEBUG, true, 0600));
 
 // Now we're creating a whole bunch of objects
-$rootDirectory = new DAV\FS\Directory(__DIR__ . '/../data/public');
+$rootDirectory = new DAV\FS\Directory(__DIR__.'/data/public');
 
 // The server object is responsible for making sense out of the WebDAV protocol
 $server = new DAV\Server($rootDirectory);
@@ -26,7 +26,7 @@ $lockBackend = new DAV\Locks\Backend\File('/tmp/davlocks');
 $lockPlugin = new DAV\Locks\Plugin($lockBackend);
 $server->addPlugin($lockPlugin);
 
-$authBackend = new DAV\Auth\Backend\File(__DIR__ . '/../data/htdigest');
+$authBackend = new DAV\Auth\Backend\File(__DIR__.'/data/htdigest');
 $authBackend->setRealm('SabreDAV');
 $authPlugin = new DAV\Auth\Plugin($authBackend);
 $server->addPlugin($authPlugin);
